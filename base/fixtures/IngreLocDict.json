@@ -1,0 +1,23 @@
+[
+    {
+        "model": "base.IngreLocDict",
+        "pk": 0,
+        "fields": {
+            "loc_name": "냉장실"
+        }
+    },
+    {
+        "model": "base.IngreLocDict",
+        "pk": 1,
+        "fields": {
+            "loc_name": "냉동실"
+        }
+    },
+    {
+        "model": "base.IngreLocDict",
+        "pk": 2,
+        "fields": {
+            "loc_name": "선반"
+        }
+    }
+]

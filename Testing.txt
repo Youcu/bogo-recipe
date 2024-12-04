@@ -1,0 +1,5 @@
+from users.models import User
+
+users = User.objects.all()
+for user in users:
+    print(user.id, user.login_id, user.name, user.email, user.gender, user.convenience)

@@ -1,0 +1,31 @@
+<!-- email_confirmation_signup_message.html (본문) -->
+{% load account %}
+{% load i18n %}
+{% block content %}
+{% autoescape off %}
+{% user_display user as user_display %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGO Application - 계정 인증</title>
+    <link rel="stylesheet" href="email_confirmation.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">Welcome to BOGO Application!</div>
+        <div class="message">
+            아래의 버튼을 눌러 계정을 인증해주세요!<br>
+            귀하의 아이디는 <span>{{ user_display }}</span> 입니다.
+        </div>
+        <a href="{{ activate_url }}" class="button" target="_blank">계정 인증하기</a>
+    </div>
+</body>
+</html>
+
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}

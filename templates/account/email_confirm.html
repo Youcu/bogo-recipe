@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Email Address</title>
+</head>
+<body>
+    <h1>Confirm Email Address</h1>
+    <p>Please confirm that <strong>{{ email }}</strong> is your email address.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+    </form>
+</body>
+</html>

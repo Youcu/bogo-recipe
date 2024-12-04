@@ -1,0 +1,79 @@
+[
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 0,
+        "fields": {
+            "recipe_category_name": "국_탕"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 1,
+        "fields": {
+            "recipe_category_name": "찌개"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 2,
+        "fields": {
+            "recipe_category_name": "면_만두"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 3,
+        "fields": {
+            "recipe_category_name": "밥_죽_떡"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 4,
+        "fields": {
+            "recipe_category_name": "메인반찬"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 5,
+        "fields": {
+            "recipe_category_name": "밑반찬"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 6,
+        "fields": {
+            "recipe_category_name": "가공식품류"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 7,
+        "fields": {
+            "recipe_category_name": "양식"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 8,
+        "fields": {
+            "recipe_category_name": "육류"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 9,
+        "fields": {
+            "recipe_category_name": "채소류"
+        }
+    },
+    {
+        "model": "base.RecipeCategoryDict",
+        "pk": 10,
+        "fields": {
+            "recipe_category_name": "해물류"
+        }
+    }
+]
