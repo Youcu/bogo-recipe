@@ -74,7 +74,7 @@ class AllRecipesView(APIView):
                 "ingredients_title_lst": [i.ingre.ingre_name for i in ingredients],
                 "main_ingre": [m.main_ingre.ingre_name for m in main_ingredients],
                 "ingredients_amount_lst": [i.ingredients_amount_lst for i in ingredients],
-                "recipe_category_id": [c.recipe_category.recipe_category_id for c in categories],
+                "recipe_category": [c.recipe_category.recipe_category_name for c in categories],  # 카테고리 이름 반환
                 "video_src": recipe.recipevideosrc.video_src if hasattr(recipe, "recipevideosrc") else None,
                 "thumb": recipe.recipethumbsrc.thumb_src if hasattr(recipe, "recipethumbsrc") else None,
                 "recipe_progress_lst": [p.recipe_progress for p in progress],
