@@ -24,14 +24,21 @@ class RecipePagination(PageNumberPagination):
     page_size = 10
     max_page_size = 100
 
-
 class AllRecipesView(APIView):
     def get(self, request):
         """
         전체 레시피를 JSON 형태로 페이지네이션하여 반환.
         """
         paginator = RecipePagination()
-        recipe_category = int(request.query_params.get("recipe_category", -1))
+        
+        # Query Parameter 처리
+        recipe_category = request.query_params.get("recipe_category", None)
+        try:
+            recipe_category = int(recipe_category) if recipe_category is not None else -1
+        except ValueError:
+            return Response({"error": "Invalid recipe_category parameter. Must be an integer."}, status=400)
+
+        # QuerySet 구성
         queryset = Recipe.objects.prefetch_related(
             Prefetch("recipeingrelist_set"),  # RecipeIngreList
             Prefetch("recipemainingre_set"),  # RecipeMainIngre
@@ -40,15 +47,16 @@ class AllRecipesView(APIView):
         ).select_related(
             "recipethumbsrc",  # Thumbnail
             "recipevideosrc",  # Video source
-            "recipetime",  # RecipeTime
+            "recipetime",      # RecipeTime
         )
 
-        # 카테고리 필터링 (옵션)
+        # 카테고리 필터링 (recipe_category == -1이면 필터링 생략)
         if recipe_category != -1:
             queryset = queryset.filter(
                 recipecategory__recipe_category__recipe_category_id=recipe_category
             )
 
+        # 페이지네이션 및 결과 반환
         page = paginator.paginate_queryset(queryset, request)
         results = {}
 
@@ -74,7 +82,7 @@ class AllRecipesView(APIView):
             }
 
         return paginator.get_paginated_response(results)
-    
+
 ##### Filtering API #####
 class FilteredRecipesView(APIView):
     permission_classes = [IsAuthenticated]
