@@ -31,6 +31,7 @@ class AllRecipesView(APIView):
         전체 레시피를 JSON 형태로 페이지네이션하여 반환.
         """
         paginator = RecipePagination()
+        recipe_category = int(request.query_params.get("recipe_category", -1))
         queryset = Recipe.objects.prefetch_related(
             Prefetch("recipeingrelist_set"),  # RecipeIngreList
             Prefetch("recipemainingre_set"),  # RecipeMainIngre
@@ -41,6 +42,12 @@ class AllRecipesView(APIView):
             "recipevideosrc",  # Video source
             "recipetime",  # RecipeTime
         )
+
+        # 카테고리 필터링 (옵션)
+        if recipe_category != -1:
+            queryset = queryset.filter(
+                recipecategory__recipe_category__recipe_category_id=recipe_category
+            )
 
         page = paginator.paginate_queryset(queryset, request)
         results = {}

@@ -35,9 +35,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'lg!*=r1&wyg=m#ror&t!8o-5oclru8t0!jmccu)#w(*xs2@=va'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bogo-recipe.com', 'www.bogo-recipe.com', '52.78.234.33', 'localhost']
+#ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'rest_framework_simplejwt.token_blacklist',
     'django_extensions',
+    'corsheaders',
     #'allauth.socialaccount.providers.google',
 ]
 
@@ -86,6 +88,9 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    # 최상단에 작성
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -95,6 +100,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Add this line
     'allauth.account.middleware.AccountMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = ['https://bogo-recipe.com', 'https://www.bogo-recipe.com']
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://bogo-recipe.com",  # 클라이언트 도메인
+    "http://localhost:3000",   # 로컬 테스트용 (React 등)
 ]
 
 SITE_ID = 1  # django-allauth에 필요한 SITE_ID
@@ -231,21 +245,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = BASE_DIR / "static/"
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
 
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'handlers': {
+#        'console': {
+#            'class': 'logging.StreamHandler',
+#        },
+#    },
+#    'loggers': {
+#        'django': {
+#            'handlers': ['console'],
+#           'level': 'DEBUG',
+#            'propagate': True,
+#        },
+#    },
+#}
+#

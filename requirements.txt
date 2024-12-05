@@ -1,0 +1,11 @@
+django
+django-allauth
+django-extensions
+djangorestframework
+djangorestframework-simplejwt
+ipython
+pandas
+requests
+dj_rest_auth
+colorama
+gunicorn
